@@ -7,7 +7,7 @@ package helloworld;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -18,6 +18,8 @@ import javafx.stage.Stage;
  */
 // Peritään Application-luokka
 public class HelloWorld extends Application {
+
+    
     
     @Override
     public void start(Stage primaryStage) {
@@ -39,10 +41,21 @@ public class HelloWorld extends Application {
         
         
         //The root is the main layout
-        VBox root = new VBox();        
-        root.getChildren().add(new TextFieldsPartial());
-        root.getChildren().add(new ButtonPartial());
-        Scene scene = new Scene(root, 300, 210);
+        HBox root = new HBox();      
+        VBox leftLayout = new VBox();      
+        root.setStyle("-fx-padding:10");
+
+        TextArea users = new TextArea();
+        users.setStyle("-fx-max-width:200;-fx-max-height:200;-fx-spacing:10");
+
+        TextFieldsPartial partial = new TextFieldsPartial();
+        leftLayout.getChildren().add(partial);
+        leftLayout.getChildren().add(new ButtonPartial(users,partial));
+        
+        root.getChildren().add(leftLayout);
+        root.getChildren().add(users);        
+//        Scene scene = new Scene(root, 450, 400);
+        Scene scene = new Scene(root);
         
 
         primaryStage.setTitle("Idea");

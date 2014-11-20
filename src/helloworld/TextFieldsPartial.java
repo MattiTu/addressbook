@@ -5,6 +5,7 @@
  */
 package helloworld;
 
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
@@ -23,7 +24,11 @@ public class TextFieldsPartial extends VBox{
         private final TextField phoneField = new TextField();
 
     public TextFieldsPartial(){
-        this.setStyle("-fx-padding:10 20 10 20");
+        VBox.setMargin(this, new Insets(10,20,10,20));
+        //this.setStyle("-fx-padding:10 20 10 20"); //Vaihtoehtoinen tapa
+        //nameLabel.setStyle("-fx-padding:10 0 0 0");
+        addressLabel.setStyle("-fx-padding:10 0 0 0");
+        phoneLabel.setStyle("-fx-padding:10 0 0 0");
         this.getChildren().add(nameLabel);
         this.getChildren().add(nameField);
         this.getChildren().add(addressLabel);
@@ -32,4 +37,17 @@ public class TextFieldsPartial extends VBox{
         this.getChildren().add(phoneField);
     }
     
+    public UserInfo getUserInfo(){
+        UserInfo info = new UserInfo();
+        info.setName(nameField.getText());
+        info.setAddress(addressField.getText());
+        info.setPhone(phoneField.getText());
+        return info;
+    }
+    
+    public void clearFields(){
+        nameField.clear();
+        addressField.clear();
+        phoneField.clear();
+    }    
 }
